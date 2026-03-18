@@ -34,7 +34,8 @@ function Home({ navigate }) {
       <section className="skills">
         <h2>Skills</h2>
         <div className="skills-grid">
-          {["React", "Firebase", "C#", "JavaScript", "HTML & CSS"].map((s) => (
+          {["React", "Firebase", "C#", "JavaScript", "HTML & CSS", 
+            "Java", "Kotlin", "Typescript"].map((s) => (
             <span key={s}>{s}</span>
           ))}
         </div>
