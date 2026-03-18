@@ -819,4 +819,20 @@ button { cursor: pointer; font-family: var(--sans); }
     height: 144px;
     border-radius: 14px;
   }
+
+  /* ── Contact item layout ── */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* WhatsApp link colour */
+.contact-whatsapp {
+  color: #25d366;
+}
+.contact-whatsapp:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
 }
