@@ -1,4 +1,3 @@
-// Navbar.js
 function Navbar({ page, navigate }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [theme, setTheme] = React.useState("system");
