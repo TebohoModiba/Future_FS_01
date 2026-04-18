@@ -1,6 +1,3 @@
-**Here's a more technical and detailed `README.md` version** tailored for developers and recruiters:
-
----
 # Teboho Modiba | Personal Portfolio Website
 
 A modern, performant, and fully interactive single-page portfolio built with vanilla React (CDN), showcasing my work as a Software Engineer and Web Developer.
