@@ -1,3 +1,4 @@
+// Navbar.js
 function Navbar({ page, navigate }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [theme, setTheme] = React.useState("system");
@@ -9,12 +10,19 @@ function Navbar({ page, navigate }) {
   }, []);
 
   const applyTheme = (newTheme) => {
+    const html = document.documentElement;
+    
     if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
+      html.classList.add("dark");
     } else if (newTheme === "light") {
-      document.documentElement.classList.remove("dark");
+      html.classList.remove("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      // System preference
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        html.classList.add("dark");
+      } else {
+        html.classList.remove("dark");
+      }
     }
     localStorage.setItem("theme", newTheme);
   };
@@ -41,7 +49,6 @@ function Navbar({ page, navigate }) {
       <button className="navbar-logo" onClick={() => handleNav("home")}>
         Teboho
       </button>
-
       {/* Desktop links */}
       <nav className="navbar-links">
         {links.map((link) => (
@@ -54,12 +61,10 @@ function Navbar({ page, navigate }) {
           </button>
         ))}
       </nav>
-
       <div className="navbar-actions">
         <button className="theme-toggle" onClick={toggleTheme} title="Toggle Theme">
           {theme === "dark" ? "☀️" : theme === "light" ? "🌙" : "🌗"}
         </button>
-
         <button
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -70,7 +75,6 @@ function Navbar({ page, navigate }) {
           <span className={`ham-line ${menuOpen ? "open" : ""}`}></span>
         </button>
       </div>
-
       {/* Mobile menu */}
       {menuOpen && (
         <nav className="mobile-menu">
