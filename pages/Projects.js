@@ -23,15 +23,15 @@ function Projects() {
     {
       title: "Habit Tracker",
       description: "Beautiful mobile app to build and track daily habits with AI suggestions.",
-      tech: "React Native, Firebase, C#",
+      tech: "React Native, MongoDB, C#",
       github: "https://github.com/TebohoModiba/Habit-Tracker"
     },
     {
       title: "Mini CRM Website",
       description: "Lightweight Customer Relationship Management web application.",
-      tech: "React, Firebase",
+      tech: "React, MongoDB",
       github: "https://github.com/TebohoModiba/Mini-CRM-website"
-    }
+
   ];
 
   const [filter, setFilter] = React.useState("All");
