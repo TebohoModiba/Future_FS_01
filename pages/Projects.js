@@ -11,7 +11,8 @@ function Projects() {
       title: "Haven App",
       description: "Mental health app with mood tracking, journaling and AI chat support.",
       tech: "React Native, Firebase",
-      github: "https://github.com/TebohoModiba/Haven"
+      github: "https://github.com/TebohoModiba/Haven",
+      demo: "#"
     },
     {
       title: "NCD React Website",
@@ -24,13 +25,15 @@ function Projects() {
       title: "Habit Tracker",
       description: "Mobile habit building app with AI-powered suggestions and progress tracking.",
       tech: "React Native, MongoDB, C#",
-      github: "https://github.com/TebohoModiba/Habit-Tracker"
+      github: "https://github.com/TebohoModiba/Habit-Tracker",
+      demo: "#"
     },
     {
       title: "Mini CRM Website",
       description: "Lightweight Customer Relationship Management web application.",
       tech: "React, MongoDB",
-      github: "https://github.com/TebohoModiba/Mini-CRM-website"
+      github: "https://github.com/TebohoModiba/Mini-CRM-website",
+      demo: "#"
     }
   ];
 
@@ -66,6 +69,7 @@ function Projects() {
             description={p.description}
             tech={p.tech}
             github={p.github}
+            demo={p.demo}
           />
         ))}
       </div>
