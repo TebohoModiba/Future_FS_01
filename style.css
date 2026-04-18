@@ -783,24 +783,94 @@ button { cursor: pointer; font-family: var(--sans); }
   .footer-dot { display: none; }
 }
 
+/* === NEW STYLES FROM LAST UPDATE === */
+
+/* Theme Toggle */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+/* Typing Cursor */
+.cursor {
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Skill Bars */
+.skills-container {
+  max-width: 680px;
+  margin: 40px auto 0;
+}
+
+.skill-bar {
+  margin-bottom: 26px;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.bar-bg {
+  height: 11px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #d8b4fe);
+  border-radius: 999px;
+  animation: fillBar 1.4s ease forwards;
+}
+
+@keyframes fillBar {
+  from { width: 0; }
+  to { width: var(--width); }
+}
+
 /* Tech Filters */
 .tech-filters {
   display: flex;
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin: 30px 0 40px;
 }
 
 .filter-btn {
-  padding: 8px 20px;
+  padding: 9px 22px;
   border-radius: 30px;
   border: 1px solid var(--accent-border);
   background: transparent;
   color: var(--accent);
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.25s;
 }
 
 .filter-btn.active,
@@ -812,14 +882,12 @@ button { cursor: pointer; font-family: var(--sans); }
 
 /* Project Links */
 .project-links {
-  margin-top: 16px;
-  display: flex;
-  gap: 16px;
-  font-size: 14px;
+  margin-top: 18px;
 }
 
 .project-link {
   color: var(--accent);
+  font-size: 14px;
   text-decoration: none;
 }
 
@@ -827,23 +895,25 @@ button { cursor: pointer; font-family: var(--sans); }
   text-decoration: underline;
 }
 
-/* Featured on Home */
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin: 32px 0;
+/* Floating GitHub Button (Optional) */
+.floating-github {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--accent);
+  color: white;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-hover);
+  z-index: 1000;
+  text-decoration: none;
+  transition: transform 0.3s;
 }
 
-.featured-card {
-  background: var(--social-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  text-align: left;
-}
-
-.featured-card h3 {
-  font-size: 16px;
-  margin-bottom: 6px;
+.floating-github:hover {
+  transform: scale(1.12);
 }
