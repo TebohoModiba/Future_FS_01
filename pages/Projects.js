@@ -12,7 +12,6 @@ function Projects() {
       description: "Mental health app with mood tracking, journaling and AI chat support.",
       tech: "React Native, Firebase",
       github: "https://github.com/TebohoModiba/Haven",
-      demo: "#"
     },
     {
       title: "NCD React Website",
@@ -26,14 +25,12 @@ function Projects() {
       description: "Mobile habit building app with AI-powered suggestions and progress tracking.",
       tech: "React Native, MongoDB, C#",
       github: "https://github.com/TebohoModiba/Habit-Tracker",
-      demo: "#"
     },
     {
       title: "Mini CRM Website",
       description: "Lightweight Customer Relationship Management web application.",
       tech: "React, MongoDB",
       github: "https://github.com/TebohoModiba/Mini-CRM-website",
-      demo: "#"
     }
   ];
 
