@@ -15,7 +15,7 @@ function Home({ navigate }) {
           <h1>Teboho Modiba</h1>
           <h2 className="hero-subtitle">Software Engineer & Web Developer</h2>
           <p>
-            I'm Teboho, also known as "Tebza" or "Tee" — an aspiring software
+            I'm Teboho, also known as "Tebza" or "Tee" an aspiring software
             engineer focused on building modern, high-impact web and mobile
             applications.
           </p>
@@ -35,7 +35,7 @@ function Home({ navigate }) {
         <h2>Skills</h2>
         <div className="skills-grid">
           {["React", "Firebase", "C#", "JavaScript", "HTML & CSS", 
-            "Java", "Kotlin", "Typescript"].map((s) => (
+            "Java", "Kotlin", "TypeScript", "Python", "SQL"].map((s) => (
             <span key={s}>{s}</span>
           ))}
         </div>
