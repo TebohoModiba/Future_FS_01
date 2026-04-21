@@ -89,8 +89,7 @@ h1, h2 {
 h1 {
   font-size: 3.5rem;
   margin-bottom: 0.75rem;
-  /* No background-clip: text to avoid clipping */
-  color: var(--text-h);
+  color: var(--text-h); /* solid color – no gradient clipping */
 }
 
 h2 {
@@ -101,6 +100,32 @@ h2 {
 p {
   line-height: 1.6;
   color: var(--text);
+}
+
+/* ── Page Transition Animations ── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-12px); }
+}
+
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-enter {
+  animation: slideUp 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1) both;
+}
+
+.page-exit {
+  animation: slideDown 0.2s ease-in both;
+  pointer-events: none;
 }
 
 /* ── Navbar – no overflow issues ── */
@@ -177,7 +202,7 @@ p {
   border-color: var(--accent);
 }
 
-/* Hamburger menu (unchanged, just ensure no clipping) */
+/* Hamburger menu */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -199,6 +224,10 @@ p {
   transition: 0.25s;
 }
 
+.hamburger .ham-line:nth-child(1).open { transform: translateY(7px) rotate(45deg); }
+.hamburger .ham-line:nth-child(2).open { opacity: 0; }
+.hamburger .ham-line:nth-child(3).open { transform: translateY(-7px) rotate(-45deg); }
+
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -208,7 +237,22 @@ p {
   backdrop-filter: blur(12px);
 }
 
-/* Hero section – name will never be cut off */
+.mobile-link {
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobile-link.active,
+.mobile-link:hover {
+  color: var(--accent);
+}
+
+/* ── Hero section – name never cut off ── */
 .hero {
   padding: 4rem 3rem;
   display: flex;
@@ -217,6 +261,11 @@ p {
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
+}
+
+.hero-photo-wrap {
+  flex-shrink: 0;
+  position: relative;
 }
 
 .hero-photo {
@@ -262,13 +311,16 @@ p {
 }
 
 /* Buttons */
-.btn-primary, .btn-outline {
+.btn-primary, .btn-outline, .btn-whatsapp, .btn-email {
   padding: 0.75rem 1.8rem;
   border-radius: 40px;
   font-weight: 600;
   font-size: 0.9rem;
   transition: all var(--transition);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .btn-primary {
@@ -295,11 +347,37 @@ p {
   border-color: var(--accent);
 }
 
-/* Skills, projects, contact – keep same modern styling but safe */
+.btn-whatsapp {
+  background: #25d366;
+  color: white;
+  border: none;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+}
+
+.btn-email {
+  background: transparent;
+  border: 1.5px solid var(--accent-border);
+  color: var(--accent);
+}
+
+.btn-email:hover {
+  background: var(--accent-bg);
+  transform: translateY(-2px);
+}
+
+/* ── Skills Section with Skill Bars (restored) ── */
 .skills {
   padding: 3rem 2rem;
   text-align: center;
   border-top: 1px solid var(--border);
+}
+
+.skills h2 {
+  margin-bottom: 1rem;
 }
 
 .skills-grid {
@@ -327,12 +405,138 @@ p {
   transform: translateY(-2px);
 }
 
-/* Project cards */
+/* Skill Bars */
+.skills-container {
+  max-width: 720px;
+  margin: 2rem auto 0;
+}
+
+.skill-bar {
+  margin-bottom: 1.8rem;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.bar-bg {
+  height: 10px;
+  background: var(--border);
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #e0aaff);
+  border-radius: 40px;
+  width: 0;
+  transition: width 1.4s ease;
+}
+
+/* ── Projects Preview (Home) ── */
+.projects-preview {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+/* ── CTA Section ── */
+.cta {
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: radial-gradient(ellipse at 50% 0%, var(--accent-bg), transparent);
+}
+
+.cta h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ── About Page (full layout) ── */
+.about {
+  padding: 4rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-hero {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.about-photo-wrap {
+  flex-shrink: 0;
+}
+
+.about-photo {
+  width: 200px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 28px;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+}
+
+.about-photo:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h1 {
+  margin-bottom: 1.5rem;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+}
+
+.about-details {
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.about-section ul {
+  padding-left: 1.5rem;
+  line-height: 1.8;
+}
+
+/* ── Projects Page ── */
+.projects-page {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.projects-subtitle {
+  margin-bottom: 2.5rem;
+  color: var(--text);
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.8rem;
-  margin-top: 2rem;
 }
 
 .project-card {
@@ -341,6 +545,7 @@ p {
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 1.8rem;
+  text-align: left;
   transition: all 0.3s;
 }
 
@@ -350,13 +555,108 @@ p {
   box-shadow: var(--shadow-hover);
 }
 
-/* Contact form */
+.project-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.project-card-tech {
+  display: inline-block;
+  background: var(--accent-bg);
+  color: var(--accent);
+  padding: 0.2rem 0.8rem;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--accent-border);
+}
+
+.project-links {
+  margin-top: 1rem;
+}
+
+.project-link {
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+/* Tech Filters */
+.tech-filters {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 40px;
+  border: 1px solid var(--accent-border);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ── Contact Page ── */
+.contact {
+  padding: 4rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-intro {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
 .contact-form {
   background: var(--card-bg);
   backdrop-filter: blur(8px);
   border-radius: 28px;
   padding: 2rem;
   border: 1px solid var(--border);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-h);
 }
 
 .form-group input,
@@ -367,6 +667,8 @@ p {
   padding: 0.8rem 1rem;
   width: 100%;
   color: var(--text-h);
+  font-family: var(--sans);
+  transition: all 0.2s;
 }
 
 .form-group input:focus,
@@ -376,11 +678,59 @@ p {
   box-shadow: 0 0 0 3px var(--accent-bg);
 }
 
-/* Footer – no clipping */
+.field-error {
+  color: #ff7b72;
+  font-size: 0.75rem;
+  margin-top: -0.25rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Typing Cursor */
+.cursor {
+  animation: blink 0.9s step-end infinite;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Floating GitHub Button */
+.floating-github {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--accent);
+  color: white;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px var(--accent-glow);
+  transition: all 0.2s;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.floating-github:hover {
+  transform: scale(1.1);
+  background: color-mix(in srgb, var(--accent) 85%, white);
+}
+
+/* ── Footer ── */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 2.5rem 2rem;
-  text-align: center;
+  padding: 2rem 2rem 1.5rem;
+  margin-top: auto;
 }
 
 .footer-inner {
@@ -391,7 +741,72 @@ p {
   margin-bottom: 2rem;
 }
 
-/* Responsive – ensures name never cuts off */
+.footer-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-h);
+  margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  color: var(--text);
+  max-width: 250px;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.footer-social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.footer-social-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* ── Responsive (all breakpoints) ── */
 @media (max-width: 768px) {
   .navbar {
     padding: 0.8rem 1.5rem;
@@ -423,7 +838,22 @@ p {
   }
   h1 {
     font-size: 2.5rem;
-    word-break: keep-all; /* prevents any break inside name */
+  }
+  .about-hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    align-items: center;
+  }
+  .about-text h1 {
+    text-align: center;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -431,36 +861,38 @@ p {
   h1 {
     font-size: 2rem;
   }
+  h2 {
+    font-size: 1.5rem;
+  }
   .hero-photo {
     width: 160px;
     height: 190px;
   }
+  .about-photo {
+    width: 150px;
+    height: 180px;
+  }
+  .btn-primary, .btn-outline, .btn-whatsapp, .btn-email {
+    width: 100%;
+    justify-content: center;
+  }
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
-/* Floating GitHub button */
-.floating-github {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: var(--accent);
-  color: white;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 14px var(--accent-glow);
-  transition: all 0.2s;
-  z-index: 999;
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  .hero-photo {
+    width: 130px;
+    height: 155px;
+  }
 }
 
-.floating-github:hover {
-  transform: scale(1.1);
-  background: color-mix(in srgb, var(--accent) 85%, white);
-}
-
-/* Additional helper to prevent any clipping */
+/* Additional helper to prevent any name clipping */
 .navbar-logo, .hero-text h1 {
   overflow: visible;
   white-space: normal;
